@@ -12,13 +12,16 @@ const characterState = {
     }
 };
 
-export default function characterHealth({health}) {
+export default function characterHealth(character) {
     const characterStateHealthy = characterState.healthy.health;
     const characterStateWounded = characterState.wounded.health;
-    if (health >= characterStateHealthy) {
+    if (character.health <= 0) {
+        throw "invalid";
+    }
+    if (character.health >= characterStateHealthy) {
         return "healthy";
     }
-    if (health >= characterStateWounded) {
+    if (character.health >= characterStateWounded) {
         return "wounded";
     }
     return "critical";
